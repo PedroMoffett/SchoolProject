@@ -7,4 +7,7 @@ module com.example.schoolproject {
     exports com.example.schoolproject;
     exports controller;
     opens controller to javafx.fxml;
+
+    exports model;
+    opens model to javafx.fxml;
 }

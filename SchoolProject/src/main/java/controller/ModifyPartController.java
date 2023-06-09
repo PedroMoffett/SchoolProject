@@ -1,5 +1,6 @@
 package controller;
 
+import com.example.schoolproject.HelloApplication;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -77,9 +78,10 @@ public class ModifyPartController implements Initializable {
      * @throws IOException
      */
     public void onClickCancelPart(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1110, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
@@ -191,9 +193,10 @@ public class ModifyPartController implements Initializable {
 
         if (passed) {
             Inventory.deletePart(selectedPart);
-            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 1110, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
             stage.setTitle("Main Menu");
             stage.setScene(scene);
             stage.show();

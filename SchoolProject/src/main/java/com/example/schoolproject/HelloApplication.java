@@ -1,6 +1,7 @@
 package com.example.schoolproject;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 500);
-        stage.setTitle("Inventory");
+        stage.setTitle("Inventory Management System");
         stage.setScene(scene);
         stage.show();
     }
@@ -31,17 +32,20 @@ public class HelloApplication extends Application {
         InHouse inHousePart2 = new InHouse(2,"Keyboard",59.99,10,1,12,102);
         Inventory.addPart(inHousePart2);
 
-        Product inHousePart3 = new Product(3,"Headset",99.99,10,1,15);
-        Inventory.addProduct(inHousePart3);
+        InHouse inHousePart3 = new InHouse(3,"Headset",99.99,10,1,15, 193);
+        Inventory.addPart(inHousePart3);
 
-        Outsourced outsourcedPart1 = new Outsourced(1,"GPU", 599.99,10,1,112,"Best Buy");
-        Inventory.addPart(outsourcedPart1);
+        Product outsourcedPart1  = new Product(1,"GPU", 599.99,10,1,112);
+        Inventory.addProduct(outsourcedPart1);
 
-        Outsourced outsourcedPart2 = new Outsourced(2,"PSU", 199.99,10,1,112,"Fry's Electronics");
-        Inventory.addPart(outsourcedPart2);
+        Product outsourcedPart2 = new Product(2,"PSU", 199.99,10,1,112);
+        Inventory.addProduct(outsourcedPart2);
 
         Product outsourcedPart3 = new Product(3,"CPU", 439.99,10,1,15);
         Inventory.addProduct(outsourcedPart3);
+
+        //Product outsourcedPart2  = new Product(1,"Bicycle_Product",799.99,12,1,15);
+        //Inventory.addProduct(inHousePart2);
 
     }
 
@@ -52,4 +56,5 @@ public class HelloApplication extends Application {
         addTestData();
         launch(args);
     }
+
 }

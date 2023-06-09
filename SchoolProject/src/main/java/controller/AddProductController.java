@@ -1,5 +1,6 @@
 package controller;
 
+import com.example.schoolproject.HelloApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -130,9 +131,10 @@ public class AddProductController implements Initializable {
      * @throws IOException
      */
     public void onClickCancelProduct(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1110, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
@@ -215,9 +217,10 @@ public class AddProductController implements Initializable {
         }
 
         if (passed) {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 1110, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
             stage.setTitle("Main Menu");
             stage.setScene(scene);
             stage.show();

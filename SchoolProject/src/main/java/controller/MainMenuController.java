@@ -1,5 +1,6 @@
 package controller;
 
+import com.example.schoolproject.HelloApplication;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -90,10 +91,11 @@ public class MainMenuController implements Initializable {
      * @throws IOException
      */
     public void onClickAddPart(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/addPart.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("addPart.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AddPart.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root,800,600);
-        stage.setTitle("AddPart");
+        Scene scene = new Scene(fxmlLoader.load(),800,600);
+        stage.setTitle("Add Part");
         stage.setScene(scene);
         stage.show();
     }
@@ -104,10 +106,11 @@ public class MainMenuController implements Initializable {
      * @throws IOException
      */
     public void onClickAddProduct(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/AddProduct.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("AddProduct.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AddProduct.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root,920,670);
-        stage.setTitle("AddProduct");
+        Scene scene = new Scene(fxmlLoader.load(),920,670);
+        stage.setTitle("Add Product");
         stage.setScene(scene);
         stage.show();
     }
@@ -196,17 +199,19 @@ public class MainMenuController implements Initializable {
                 Inventory.deletePart(selectedItem);
                 deleted = true;
                 if (deleted) {
-                    Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                    //Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root, 1110, 600);
+                    Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
                     stage.setTitle("Main Menu");
                     stage.setScene(scene);
                     stage.show();
                 }
             } else {
-                Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+               // Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root, 1110, 600);
+                Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
                 stage.setTitle("Main Menu");
                 stage.setScene(scene);
                 stage.show();
@@ -254,18 +259,20 @@ public class MainMenuController implements Initializable {
                     Inventory.deleteProduct(selectedItem);
                     deleted = true;
                     if (deleted) {
-                        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                        //Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(root, 1110, 600);
+                        Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
                         stage.setTitle("Main Menu");
                         stage.setScene(scene);
                         stage.show();
                     }
                 }
             } else {
-                Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                //Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root, 1110, 600);
+                Scene scene = new Scene(fxmlLoader.load(), 1110, 600);
                 stage.setTitle("Main Menu");
                 stage.setScene(scene);
                 stage.show();
@@ -297,10 +304,11 @@ public class MainMenuController implements Initializable {
         }
 
         if (selectedpart != null) {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ModifyPart.fxml")));
+            //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ModifyPart.fxml")));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ModifyPart.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 920, 670);
-            stage.setTitle("ModifyPart");
+            Scene scene = new Scene(fxmlLoader.load(), 920, 670);
+            stage.setTitle("Modify Part");
             stage.setScene(scene);
             stage.show();
         }
@@ -329,10 +337,11 @@ public class MainMenuController implements Initializable {
         }
 
         if (selectedproduct != null) {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyProduct.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("ModifyProduct.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 920, 670);
-            stage.setTitle("ModifyProduct");
+            Scene scene = new Scene(fxmlLoader.load(), 920, 670);
+            stage.setTitle("Modify Product");
             stage.setScene(scene);
             stage.show();
         }

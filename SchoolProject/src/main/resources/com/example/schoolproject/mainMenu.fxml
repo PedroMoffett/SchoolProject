@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schoolproject.HelloApplication">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
     <children>
       <TableView fx:id="partTable" layoutX="74.0" layoutY="224.0" prefHeight="221.0" prefWidth="437.0">
         <columns>
@@ -25,7 +25,7 @@
       <Button fx:id="button1" layoutX="460.0" layoutY="464.0" onAction="#onDeletePart" text="Delete" />
       <Button fx:id="button11" layoutX="406.0" layoutY="464.0" onAction="#onClickModifyPart" text="Modify" />
       <Button fx:id="addPartB" layoutX="368.0" layoutY="464.0" onAction="#onClickAddPart" text="Add" />
-      <Button fx:id="addProductB" layoutX="811.0" layoutY="464.0" onAction="#onClickaddProduct" text="Add" />
+      <Button fx:id="addProductB" layoutX="811.0" layoutY="464.0" onAction="#onClickAddProduct" text="Add" />
       <Button fx:id="button112" layoutX="849.0" layoutY="464.0" onAction="#onClickModifyProduct" text="Modify" />
       <Button fx:id="button12" layoutX="903.0" layoutY="464.0" onAction="#onDeleteProduct" text="Delete" />
       <TextField fx:id="searchPartString" layoutX="274.0" layoutY="175.0" onAction="#onSearchPart" prefHeight="39.0" prefWidth="226.0" />
