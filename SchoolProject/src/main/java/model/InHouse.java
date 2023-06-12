@@ -4,7 +4,7 @@ package model;
  * model.inhouse
  * @author Peter Moffett
  */
-public class InHouse extends Part{
+public class InHouse extends Part {
     private int machineId;
 
     /**

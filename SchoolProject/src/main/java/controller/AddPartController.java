@@ -6,12 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.InHouse;
 import model.Inventory;
@@ -20,7 +16,6 @@ import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -44,6 +39,13 @@ public class AddPartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("AddPart!");
+
+        ToggleGroup group = new ToggleGroup();
+        inHouseRadioIcon.setToggleGroup(group);
+        outSourcedRadioIcon.setToggleGroup(group);
+
+        //Autogenerate ID
+        partIDField.setText(String.valueOf(Inventory.getID()));
     }
 
     public void onClickCancelPart(ActionEvent actionEvent) throws IOException {
@@ -61,7 +63,7 @@ public class AddPartController implements Initializable {
      * @param actionEvent InHouse Radio Button event
      */
     public void onClickInHouseRadio(ActionEvent actionEvent) {
-        addPartTextField.setText("MachineID");
+        addPartTextField.setText("Machine ID");
     }
 
     /**

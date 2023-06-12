@@ -5,18 +5,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -126,48 +123,51 @@ public class MainMenuController implements Initializable {
 
     /**
      * search based on value in searchbox textfield
-     * @param keyEvent
-     */
-    public void onSearchPart(KeyEvent keyEvent) {
-        String q = searchPartString.getText().toLowerCase();
+     * @param actionEvent*/
 
-        ObservableList<Part> parts = Inventory.lookupPart(q);
+    public void onSearchPart(ActionEvent actionEvent) {
 
-        try {
-            if (parts.size() == 0){
-                int id = Integer.parseInt(q);
-                Part search = Inventory.lookupPart(id);
-                if(search != null)
-                    parts.add(search);
+        if (!searchPartString.getText().trim().isEmpty()) {
+            try {
+                int id = Integer.parseInt(searchPartString.getText());
+                for (Part q : Inventory.getAllParts()) {
+                    if (q.getId() == id) {
+                        partTable.getSelectionModel().select(q);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                String Name = (searchPartString.getText());
+                for (Part q : Inventory.getAllParts()) {
+                    if (q.getName().equals(Name)) {
+                        partTable.getSelectionModel().select(q);
+                    }
+                }
             }
-        } catch (NumberFormatException e){
-
         }
-
-        partTable.setItems(parts);
     }
 
     /**
      * search based on value in searchbox textfield
-     * @param keyEvent
+     * @param actionEvent
      */
-    public void onSearchProduct(KeyEvent keyEvent) {
-        String q = searchProductString.getText().toLowerCase();
-
-        ObservableList<Product> products = Inventory.lookupProduct(q);
-
-        try {
-            if (products.size() == 0){
-                int id = Integer.parseInt(q);
-                Product search = Inventory.lookupProduct(id);
-                if(search != null)
-                    products.add(search);
+    public void onSearchProduct(ActionEvent actionEvent) {
+        if (!searchProductString.getText().trim().isEmpty()) {
+            try {
+                int id = Integer.parseInt(searchProductString.getText());
+                for (Product q : Inventory.getAllProducts()) {
+                    if (q.getId() == id) {
+                        productTable.getSelectionModel().select(q);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                String Name = (searchProductString.getText());
+                for (Product q : Inventory.getAllProducts()) {
+                    if (q.getName().equals(Name)) {
+                        productTable.getSelectionModel().select(q);
+                    }
+                }
             }
-        } catch (NumberFormatException e){
-
         }
-
-        productTable.setItems(products);
     }
 
     /**
@@ -308,7 +308,7 @@ public class MainMenuController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ModifyPart.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(fxmlLoader.load(), 920, 670);
-            stage.setTitle("Modify Part");
+            stage.setTitle("Modify Part Screen");
             stage.setScene(scene);
             stage.show();
         }
@@ -338,7 +338,7 @@ public class MainMenuController implements Initializable {
 
         if (selectedproduct != null) {
             //Parent root = FXMLLoader.load(getClass().getResource("ModifyProduct.fxml"));
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ModifyProduct.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(fxmlLoader.load(), 920, 670);
             stage.setTitle("Modify Product");

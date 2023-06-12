@@ -7,11 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.*;
 
@@ -54,6 +52,9 @@ public class AddProductController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        productIDField.setText(String.valueOf(Inventory.getProductID()));
+
 
         System.out.println("AddProduct!");
 
@@ -230,24 +231,25 @@ public class AddProductController implements Initializable {
 
     /**
      * search based on value in the searchbox text
-     * @param keyEvent
+     * @param actionEvent
      */
-    public void onSearchPart(KeyEvent keyEvent) {
-        String q = searchPartString.getText().toLowerCase();
-
-        ObservableList<Part> parts = Inventory.lookupPart(q);
-
-        try {
-            if (parts.size() == 0){
-                int id = Integer.parseInt(q);
-                Part search = Inventory.lookupPart(id);
-                if(search != null)
-                    parts.add(search);
+    public void onSearchPart(ActionEvent actionEvent) {
+        if (!searchPartString.getText().trim().isEmpty()) {
+            try {
+                int id = Integer.parseInt(searchPartString.getText());
+                for (Part q : Inventory.getAllParts()) {
+                    if (q.getId() == id) {
+                        allTable.getSelectionModel().select(q);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                String Name = (searchPartString.getText());
+                for (Part q : Inventory.getAllParts()) {
+                    if (q.getName().equals(Name)) {
+                        allTable.getSelectionModel().select(q);
+                    }
+                }
             }
-        } catch (NumberFormatException e){
-
         }
-
-        allTable.setItems(parts);
     }
 }

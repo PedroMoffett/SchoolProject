@@ -2,7 +2,6 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.util.Locale;
 
 
 /**
@@ -10,6 +9,7 @@ import java.util.Locale;
  * @author Peter Moffett
  */
 public class Inventory {
+
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
@@ -112,5 +112,28 @@ public class Inventory {
      */
     public static boolean deleteProduct(Product selectedProduct){
         return allProducts.remove(selectedProduct);
+    }
+
+    public static int getID() {
+        int newId = 0;
+        ObservableList<Part> allParts = Inventory.getAllParts();
+
+        for (Part part : allParts) {
+            if (part.getId() > newId) {
+                newId = part.getId();
+            }
+        }
+        return ++newId;
+    }
+    public static int getProductID() {
+        int newProductId = 0;
+        ObservableList<Product> allProducts = Inventory.getAllProducts();
+
+        for (Product product : allProducts) {
+            if (product.getId() > newProductId) {
+                newProductId = product.getId();
+            }
+        }
+        return ++newProductId;
     }
 }

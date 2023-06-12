@@ -7,11 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
@@ -19,7 +17,6 @@ import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -55,6 +52,7 @@ public class ModifyProductController implements Initializable {
     /**
      * Initialize the Controller
      * Populate the text fields with selected product data
+     *
      * @param url
      * @param resourceBundle
      */
@@ -62,7 +60,7 @@ public class ModifyProductController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         System.out.println("AddProduct!");
-        selectedProduct =  MainMenuController.productmodify();
+        selectedProduct = MainMenuController.productmodify();
         associatedParts = selectedProduct.getAssociatedParts();
 
         allTable.setItems(Inventory.getAllParts());
@@ -86,8 +84,9 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *  add selectedparts to the associatedpart table
-     *  if part wasn't selected, the Warning Dialog box pops up
+     * add selectedparts to the associatedpart table
+     * if part wasn't selected, the Warning Dialog box pops up
+     *
      * @param actionEvent add button action event
      */
     public void addAssociatedPart(ActionEvent actionEvent) {
@@ -100,8 +99,7 @@ public class ModifyProductController implements Initializable {
             alert.setHeaderText("Please select an item to add!");
             alert.setContentText("Part wasn't selected.  Please select the Part");
             alert.showAndWait();
-        }
-        else {
+        } else {
             associatedParts.add(selectedItem);
             fewTable.setItems(associatedParts);
         }
@@ -110,6 +108,7 @@ public class ModifyProductController implements Initializable {
     /**
      * remove selectedparts from the associatedTable
      * if part was not selected, the Warning Dialog box popped up
+     *
      * @param actionEvent Remove Associated Button event
      */
     public void deleteAssociatedPart(ActionEvent actionEvent) {
@@ -122,8 +121,7 @@ public class ModifyProductController implements Initializable {
             alert.setHeaderText("Select an item to remove!");
             alert.setContentText("Part wasn't selected.  Please select a part.");
             alert.showAndWait();
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("This is an alert!!!");
             alert.setHeaderText("Selected part will be deleted!");
@@ -139,6 +137,7 @@ public class ModifyProductController implements Initializable {
 
     /**
      * ModifyProduct closes, and application returns to MainMenu
+     *
      * @param actionEvent Cancel Button Action event
      * @throws IOException
      */
@@ -154,10 +153,11 @@ public class ModifyProductController implements Initializable {
 
     /**
      * Product was modified and returned to Main Menu after validating and logic are checked
+     *
      * @param actionEvent Save Button Action event
      * @throws IOException
      */
-    public void onClickSaveProduct(ActionEvent actionEvent) throws IOException{
+    public void onClickSaveProduct(ActionEvent actionEvent) throws IOException {
         ObservableList<Product> products = Inventory.getAllProducts();
 
         int id = selectedProduct.getId();
@@ -173,7 +173,7 @@ public class ModifyProductController implements Initializable {
             boolean isinventoryvalid = true;
             boolean isminvalid = true;
 
-            if(Integer.parseInt(min) < 0 || Integer.parseInt(max) < 0 || Integer.parseInt(inventory) < 0 || Double.parseDouble(price) < 0){
+            if (Integer.parseInt(min) < 0 || Integer.parseInt(max) < 0 || Integer.parseInt(inventory) < 0 || Double.parseDouble(price) < 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("This is an error!");
                 alert.setHeaderText("Form contains unacceptable data!");
@@ -221,7 +221,7 @@ public class ModifyProductController implements Initializable {
                 passed = true;
             }
 
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("There is an error!");
             alert.setHeaderText("There is an error adding product!");
@@ -243,24 +243,26 @@ public class ModifyProductController implements Initializable {
 
     /**
      * search based on value in searchbox textfield
-     * @param keyEvent
+     *
+     * @param actionEvent
      */
-    public void onSearchPart(KeyEvent keyEvent) {
-        String q = searchPartString.getText().toLowerCase();
-
-        ObservableList<Part> parts = Inventory.lookupPart(q);
-
-        try {
-            if (parts.size() == 0){
-                int id = Integer.parseInt(q);
-                Part search = Inventory.lookupPart(id);
-                if(search != null)
-                    parts.add(search);
+    public void onSearchPart(ActionEvent actionEvent) {
+        if (!searchPartString.getText().trim().isEmpty()) {
+            try {
+                int id = Integer.parseInt(searchPartString.getText());
+                for (Part q : Inventory.getAllParts()) {
+                    if (q.getId() == id) {
+                        allTable.getSelectionModel().select(q);
+                    }
+                }
+            } catch (NumberFormatException e) {
+                String Name = (searchPartString.getText());
+                for (Part q : Inventory.getAllParts()) {
+                    if (q.getName().equals(Name)) {
+                        allTable.getSelectionModel().select(q);
+                    }
+                }
             }
-        } catch (NumberFormatException e){
-
         }
-
-        allTable.setItems(parts);
     }
 }

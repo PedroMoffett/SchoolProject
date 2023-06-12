@@ -4,7 +4,7 @@ package model;
  * Outsourced Model
  * @author Peter Moffett
  */
-public class Outsourced extends Part{
+public class Outsourced extends Part {
     private String companyName;
 
     /**

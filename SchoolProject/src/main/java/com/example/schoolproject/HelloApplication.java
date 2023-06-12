@@ -44,9 +44,6 @@ public class HelloApplication extends Application {
         Product outsourcedPart3 = new Product(3,"CPU", 439.99,10,1,15);
         Inventory.addProduct(outsourcedPart3);
 
-        //Product outsourcedPart2  = new Product(1,"Bicycle_Product",799.99,12,1,15);
-        //Inventory.addProduct(inHousePart2);
-
     }
 
     /**
@@ -58,3 +55,10 @@ public class HelloApplication extends Application {
     }
 
 }
+
+/*
+*1. Outsourced/Company name radio button inconsistency
+*2. Radio Button one clicked at a time
+*
+* auto in intialize method and use map.random class.  set the text field to the random number
+* */
