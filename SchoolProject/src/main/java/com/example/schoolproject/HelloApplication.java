@@ -12,6 +12,12 @@ import model.Product;
 
 import java.io.IOException;
 
+/*
+To improve the functionality of this project I would like to connect this code to a database so the information may be more streamlined
+logical error that I encountered was the inability to have the min be greater than the max in any screen within the GUI.
+Run Time Error can be found in MainMenuController passing "null" value.
+ */
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -55,10 +61,3 @@ public class HelloApplication extends Application {
     }
 
 }
-
-/*
-*1. Outsourced/Company name radio button inconsistency
-*2. Radio Button one clicked at a time
-*
-* auto in intialize method and use map.random class.  set the text field to the random number
-* */

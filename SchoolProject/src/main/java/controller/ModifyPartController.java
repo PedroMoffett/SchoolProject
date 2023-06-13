@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.InHouse;
 import model.Inventory;
@@ -47,6 +44,11 @@ public class ModifyPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ToggleGroup group = new ToggleGroup();
+        inHouseRadioIcon.setToggleGroup(group);
+        outSourcedRadioIcon.setToggleGroup(group);
+
         System.out.println("Modify Part!");
         selectedPart =  MainMenuController.partmodify();
 
