@@ -246,7 +246,7 @@ public class ModifyProductController implements Initializable {
      *
      * @param actionEvent
      */
-    public void onSearchPart(ActionEvent actionEvent) {
+    /*public void onSearchPart(ActionEvent actionEvent) {
         if (!searchPartString.getText().trim().isEmpty()) {
             try {
                 int id = Integer.parseInt(searchPartString.getText());
@@ -264,5 +264,37 @@ public class ModifyProductController implements Initializable {
                 }
             }
         }
+    }
+}*/
+
+    public void onSearchPart(ActionEvent actionEvent) {
+
+        String searchText = searchPartString.getText();
+
+        ObservableList<Part> parts = Inventory.lookupPart(searchText);
+
+        if (parts.isEmpty()) {
+            try {
+                int searchId = Integer.parseInt(searchText);
+                Part searchPart = Inventory.lookupPart(searchId);
+                if (searchPart != null) {
+                    parts.add(searchPart);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("No Match");
+                    alert.setContentText("No part matches found.");
+                    alert.showAndWait();
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
+            }
+        }
+
+        allTable.setItems(parts);
     }
 }

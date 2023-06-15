@@ -41,7 +41,7 @@
       <TextField fx:id="productPriceField" layoutX="64.0" layoutY="242.0" prefHeight="25.0" prefWidth="175.0" />
       <TextField fx:id="productInventoryField" layoutX="61.0" layoutY="198.0" prefHeight="25.0" prefWidth="175.0" />
       <TextField fx:id="productNameField" layoutX="61.0" layoutY="157.0" prefHeight="25.0" prefWidth="175.0" />
-      <TextField fx:id="productIDField" layoutX="61.0" layoutY="108.0" prefHeight="25.0" prefWidth="175.0" />
+      <TextField fx:id="productIDField" disable="true" layoutX="61.0" layoutY="108.0" prefHeight="25.0" prefWidth="175.0" promptText="Auto-Gen Disabled" />
       <Button fx:id="addAssociatedPartB" layoutX="689.0" layoutY="547.0" onAction="#onClickSaveProduct" text="Save" />
       <Button fx:id="deleteAssociatedPartB" layoutX="689.0" layoutY="512.0" onAction="#deleteAssociatedPart" text="Remove Associated Part" />
       <Button layoutX="807.0" layoutY="276.0" mnemonicParsing="false" onAction="#addAssociatedPart" text="Add" />

@@ -47,6 +47,7 @@ public class AddProductController implements Initializable {
 
     /**
      * Initialize the Controller and populate the Tables views
+     *
      * @param url
      * @param resourceBundle
      */
@@ -77,6 +78,7 @@ public class AddProductController implements Initializable {
     /**
      * add selectedparts to the associatedpart table
      * if part was not selected the Warning Dialog box popped up.
+     *
      * @param actionEvent Add button action event
      */
     public void addAssociatedPart(ActionEvent actionEvent) {
@@ -89,8 +91,7 @@ public class AddProductController implements Initializable {
             alert.setHeaderText("Please select an item to add!");
             alert.setContentText("Part wasn't selected");
             alert.showAndWait();
-        }
-        else {
+        } else {
             associatedParts.add(selectedItem);
             fewTable.setItems(associatedParts);
         }
@@ -99,20 +100,20 @@ public class AddProductController implements Initializable {
     /**
      * remove selectedparts from the associatedTable
      * if part was not selected the Warning Dialog box popped up
+     *
      * @param actionEvent Remove AssociatedPart Button action event
      */
     public void deleteAssociatedPart(ActionEvent actionEvent) {
         System.out.println("On Remove Button!");
         Part selectedItem = (Part) fewTable.getSelectionModel().getSelectedItem();
 
-        if (selectedItem == null){
+        if (selectedItem == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("There is an error!");
             alert.setHeaderText("Select an item to remove!");
             alert.setContentText("Part was not selected.  Please select a Part.");
             alert.showAndWait();
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("This is an alert!");
             alert.setHeaderText("Selected part will be deleted!");
@@ -128,6 +129,7 @@ public class AddProductController implements Initializable {
 
     /**
      * AddProduct closes, and application returns to MainMenu
+     *
      * @param actionEvent Cancel Button action
      * @throws IOException
      */
@@ -143,12 +145,13 @@ public class AddProductController implements Initializable {
 
     /**
      * Add new product and Return to Main Menu after validating and logic are checked
+     *
      * @param actionEvent Save button action event
      * @throws IOException
      */
-    public void onClickSaveProduct(ActionEvent actionEvent) throws IOException{
+    public void onClickSaveProduct(ActionEvent actionEvent) throws IOException {
         ObservableList<Product> products = Inventory.getAllProducts();
-        int id = 7000+products.size();
+        int id = 7000 + products.size();
         productIDField = new TextField(String.valueOf(++id));
 
         String name = productNameField.getText();
@@ -163,7 +166,7 @@ public class AddProductController implements Initializable {
             boolean isinventoryvalid = true;
             boolean isminvalid = true;
 
-            if(Integer.parseInt(min) < 0 || Integer.parseInt(max) < 0 || Integer.parseInt(inventory) < 0 || Double.parseDouble(price) < 0){
+            if (Integer.parseInt(min) < 0 || Integer.parseInt(max) < 0 || Integer.parseInt(inventory) < 0 || Double.parseDouble(price) < 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("There is an error!");
                 alert.setHeaderText("Form contains unacceptable data!");
@@ -209,7 +212,7 @@ public class AddProductController implements Initializable {
                 passed = true;
             }
 
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("There is an error!");
             alert.setHeaderText("There was an error adding product!");
@@ -231,25 +234,71 @@ public class AddProductController implements Initializable {
 
     /**
      * search based on value in the searchbox text
+     *
      * @param actionEvent
      */
-    public void onSearchPart(ActionEvent actionEvent) {
-        if (!searchPartString.getText().trim().isEmpty()) {
+
+
+    /*public void onSearchPart(ActionEvent actionEvent) {
+
+        String searchText = searchPartString.getText();
+
+        ObservableList<Part> parts = Inventory.lookupPart(searchText);
+
+        if (parts.isEmpty()) {
             try {
-                int id = Integer.parseInt(searchPartString.getText());
-                for (Part q : Inventory.getAllParts()) {
-                    if (q.getId() == id) {
-                        allTable.getSelectionModel().select(q);
-                    }
+                int searchId = Integer.parseInt(searchText);
+                Part searchPart = Inventory.lookupPart(searchId);
+                if (searchPart != null) {
+                    parts.add(searchPart);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("No Match");
+                    alert.setContentText("No part matches found.");
+                    alert.showAndWait();
                 }
             } catch (NumberFormatException e) {
-                String Name = (searchPartString.getText());
-                for (Part q : Inventory.getAllParts()) {
-                    if (q.getName().equals(Name)) {
-                        allTable.getSelectionModel().select(q);
-                    }
-                }
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
             }
         }
+
+        allTable.setItems(parts);
+    }
+}*/
+    public void onSearchPart(ActionEvent actionEvent) {
+
+        String searchText = searchPartString.getText();
+
+        ObservableList<Part> parts = Inventory.lookupPart(searchText);
+
+        if (parts.isEmpty()) {
+            try {
+                int searchId = Integer.parseInt(searchText);
+                Part searchPart = Inventory.lookupPart(searchId);
+                if (searchPart != null) {
+                    parts.add(searchPart);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("No Match");
+                    alert.setContentText("No part matches found.");
+                    alert.showAndWait();
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
+            }
+        }
+
+        allTable.setItems(parts);
     }
 }
+

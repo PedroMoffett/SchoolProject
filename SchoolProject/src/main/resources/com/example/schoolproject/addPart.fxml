@@ -21,7 +21,7 @@
       <Label fx:id="addPartTextField" layoutX="22.0" layoutY="373.0" prefHeight="70.0" prefWidth="65.0" text="Machine ID" />
       <Label layoutX="250.0" layoutY="330.0" prefHeight="70.0" prefWidth="33.0" text="Max" />
       <Button fx:id="button1" alignment="BOTTOM_RIGHT" layoutX="374.0" layoutY="550.0" onAction="#onClickSavePart" text="Save" />
-      <TextField fx:id="partIDField" layoutX="101.0" layoutY="154.0" prefHeight="25.0" prefWidth="380.0" />
+      <TextField fx:id="partIDField" disable="true" layoutX="101.0" layoutY="154.0" prefHeight="25.0" prefWidth="380.0" promptText="Auto-Gen Disabled" />
       <TextField fx:id="partNameField" layoutX="101.0" layoutY="205.0" prefHeight="25.0" prefWidth="380.0" />
       <TextField fx:id="partInventoryField" layoutX="101.0" layoutY="253.0" prefHeight="25.0" prefWidth="380.0" />
       <TextField fx:id="partPriceField" layoutX="101.0" layoutY="300.0" prefHeight="25.0" prefWidth="380.0" />

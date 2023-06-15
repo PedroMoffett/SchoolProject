@@ -125,49 +125,128 @@ public class MainMenuController implements Initializable {
      * search based on value in searchbox textfield
      * @param actionEvent*/
 
+
+    /*public void onSearchPart(ActionEvent actionEvent) {
+        String q = searchPartString.getText().toLowerCase();
+
+        ObservableList<Part> parts = Inventory.lookupPart(q);
+
+        try {
+            if (parts.size() == 0){
+                int id = Integer.parseInt(q);
+                Part search = Inventory.lookupPart(id);
+                if(search != null)
+                    parts.add(search);
+            }
+            else {
+                errorLog("No results.");
+                partTable.setItems(Inventory.getAllParts());
+                searchPartString.setText("");
+            }
+
+        } catch (NumberFormatException e)
+    {
+
+        }
+
+        partTable.setItems(parts);
+    }*/
+
     public void onSearchPart(ActionEvent actionEvent) {
 
-        if (!searchPartString.getText().trim().isEmpty()) {
+        String searchText = searchPartString.getText();
+
+        ObservableList<Part> parts = Inventory.lookupPart(searchText);
+
+        if (parts.isEmpty()) {
             try {
-                int id = Integer.parseInt(searchPartString.getText());
-                for (Part q : Inventory.getAllParts()) {
-                    if (q.getId() == id) {
-                        partTable.getSelectionModel().select(q);
-                    }
-                }
-            } catch (NumberFormatException e) {
-                String Name = (searchPartString.getText());
-                for (Part q : Inventory.getAllParts()) {
-                    if (q.getName().equals(Name)) {
-                        partTable.getSelectionModel().select(q);
-                    }
+                int searchId = Integer.parseInt(searchText);
+                Part searchPart = Inventory.lookupPart(searchId);
+                if (searchPart != null) {
+                    parts.add(searchPart);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("No Match");
+                    alert.setContentText("No part matches found.");
+                    alert.showAndWait();
                 }
             }
+            catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
+            }
         }
+
+        partTable.setItems(parts);
     }
 
     /**
      * search based on value in searchbox textfield
      * @param actionEvent
      */
-    public void onSearchProduct(ActionEvent actionEvent) {
-        if (!searchProductString.getText().trim().isEmpty()) {
-            try {
-                int id = Integer.parseInt(searchProductString.getText());
-                for (Product q : Inventory.getAllProducts()) {
-                    if (q.getId() == id) {
-                        productTable.getSelectionModel().select(q);
-                    }
-                }
-            } catch (NumberFormatException e) {
-                String Name = (searchProductString.getText());
-                for (Product q : Inventory.getAllProducts()) {
-                    if (q.getName().equals(Name)) {
-                        productTable.getSelectionModel().select(q);
-                    }
-                }
+
+    /*public void onSearchProduct(ActionEvent actionEvent) {
+        String q = searchProductString.getText().toLowerCase();
+
+        ObservableList<Product> products = Inventory.lookupProduct(q);
+
+        try {
+            if (products.size() == 0) {
+                int id = Integer.parseInt(q);
+                Product search = Inventory.lookupProduct(id);
+                if (search != null)
+                    products.add(search);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
             }
         }
+                catch(NumberFormatException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
+            }
+        }
+        productTable.setItems(products);
+    }*/
+
+    public void onSearchProduct(ActionEvent actionEvent) {
+
+        String searchText = searchProductString.getText();
+
+        ObservableList<Product> products = Inventory.lookupProduct(searchText);
+
+        if (products.isEmpty()) {
+            try {
+                int searchId = Integer.parseInt(searchText);
+                Product searchProduct = Inventory.lookupProduct(searchId);
+                if (searchProduct != null) {
+                    products.add(searchProduct);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("No Match");
+                    alert.setContentText("No part matches found.");
+                    alert.showAndWait();
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No Match");
+                alert.setContentText("No part matches found.");
+                alert.showAndWait();
+            }
+        }
+        productTable.setItems(products);
     }
 
     /**

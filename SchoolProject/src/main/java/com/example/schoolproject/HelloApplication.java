@@ -13,6 +13,7 @@ import model.Product;
 import java.io.IOException;
 
 /*
+Javadoc folder stored within the School Project folder.  SchoolProject/javadoc
 To improve the functionality of this project I would like to connect this code to a database so the information may be more streamlined
 logical error that I encountered was the inability to have the min be greater than the max in any screen within the GUI.
 Run Time Error can be found in MainMenuController passing "null" value.
@@ -41,13 +42,13 @@ public class HelloApplication extends Application {
         InHouse inHousePart3 = new InHouse(3,"Headset",99.99,10,1,15, 193);
         Inventory.addPart(inHousePart3);
 
-        Product outsourcedPart1  = new Product(1,"GPU", 599.99,10,1,112);
+        Product outsourcedPart1  = new Product(1,"Graphics Card", 599.99,10,1,20);
         Inventory.addProduct(outsourcedPart1);
 
-        Product outsourcedPart2 = new Product(2,"PSU", 199.99,10,1,112);
+        Product outsourcedPart2 = new Product(2,"Power Supply", 199.99,10,1,20);
         Inventory.addProduct(outsourcedPart2);
 
-        Product outsourcedPart3 = new Product(3,"CPU", 439.99,10,1,15);
+        Product outsourcedPart3 = new Product(3,"Hard Drive", 239.99,10,1,20);
         Inventory.addProduct(outsourcedPart3);
 
     }
